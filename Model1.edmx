@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище UFANETModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="middle_name" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="birthday" Type="date" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="address" Type="text" Nullable="false" />
+          <Property Name="passport_data" Type="varchar" MaxLength="100" />
+          <Property Name="registration_date" Type="date" Nullable="false" />
+          <Property Name="photo" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="contract_id" />
+          </Key>
+          <Property Name="contract_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="tariff_id" Type="int" Nullable="false" />
+          <Property Name="contract_number" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" />
+          <Property Name="status" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="monthly_payment" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="days_remaining" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contract_id" Type="int" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="payment_date" Type="datetime" Nullable="false" />
+          <Property Name="payment_method" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="service_id" />
+          </Key>
+          <Property Name="service_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="service_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="service_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="base_price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tariffs">
+          <Key>
+            <PropertyRef Name="tariff_id" />
+          </Key>
+          <Property Name="tariff_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="service_id" Type="int" Nullable="false" />
+          <Property Name="tariff_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="speed_mbps" Type="int" />
+          <Property Name="channel_count" Type="int" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_client">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_contract">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="contract_id" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="contract_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_service">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="Tariffs" Type="Self.Tariffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="service_id" />
+            </Principal>
+            <Dependent Role="Tariffs">
+              <PropertyRef Name="service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tariff">
+          <End Role="Tariffs" Type="Self.Tariffs" Multiplicity="1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tariffs">
+              <PropertyRef Name="tariff_id" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="tariff_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище UFANETModelContainer">
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tariffs" EntityType="Self.Tariffs" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_client" Association="Self.fk_client">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_contract" Association="Self.fk_contract">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_service" Association="Self.fk_service">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Tariffs" EntitySet="Tariffs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tariff" Association="Self.fk_tariff">
+            <End Role="Tariffs" EntitySet="Tariffs" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UFANETModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="middle_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="birthday" Type="DateTime" Precision="0" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="passport_data" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="registration_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contracts" Relationship="Self.fk_client" FromRole="Clients" ToRole="Contracts" />
+        </EntityType>
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="contract_id" />
+          </Key>
+          <Property Name="contract_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="client_id" Type="Int32" Nullable="false" />
+          <Property Name="tariff_id" Type="Int32" Nullable="false" />
+          <Property Name="contract_number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="monthly_payment" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="days_remaining" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Clients" Relationship="Self.fk_client" FromRole="Contracts" ToRole="Clients" />
+          <NavigationProperty Name="Payments" Relationship="Self.fk_contract" FromRole="Contracts" ToRole="Payments" />
+          <NavigationProperty Name="Tariffs" Relationship="Self.fk_tariff" FromRole="Contracts" ToRole="Tariffs" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contract_id" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="payment_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="payment_method" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Contracts" Relationship="Self.fk_contract" FromRole="Payments" ToRole="Contracts" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="service_id" />
+          </Key>
+          <Property Name="service_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="service_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="service_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="base_price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tariffs" Relationship="Self.fk_service" FromRole="Services" ToRole="Tariffs" />
+        </EntityType>
+        <EntityType Name="Tariffs">
+          <Key>
+            <PropertyRef Name="tariff_id" />
+          </Key>
+          <Property Name="tariff_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="service_id" Type="Int32" Nullable="false" />
+          <Property Name="tariff_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="speed_mbps" Type="Int32" />
+          <Property Name="channel_count" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Contracts" Relationship="Self.fk_tariff" FromRole="Tariffs" ToRole="Contracts" />
+          <NavigationProperty Name="Services" Relationship="Self.fk_service" FromRole="Tariffs" ToRole="Services" />
+        </EntityType>
+        <Association Name="fk_client">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="client_id" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_contract">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="contract_id" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="contract_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tariff">
+          <End Role="Tariffs" Type="Self.Tariffs" Multiplicity="1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tariffs">
+              <PropertyRef Name="tariff_id" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="tariff_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_service">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="Tariffs" Type="Self.Tariffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="service_id" />
+            </Principal>
+            <Dependent Role="Tariffs">
+              <PropertyRef Name="service_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UFANETEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" />
+          <EntitySet Name="Services" EntityType="Self.Services" />
+          <EntitySet Name="Tariffs" EntityType="Self.Tariffs" />
+          <AssociationSet Name="fk_client" Association="Self.fk_client">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_contract" Association="Self.fk_contract">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tariff" Association="Self.fk_tariff">
+            <End Role="Tariffs" EntitySet="Tariffs" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_service" Association="Self.fk_service">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="Tariffs" EntitySet="Tariffs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище UFANETModelContainer" CdmEntityContainer="UFANETEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="UFANETModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="passport_data" ColumnName="passport_data" />
+                <ScalarProperty Name="registration_date" ColumnName="registration_date" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="UFANETModel.Contracts">
+              <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="tariff_id" ColumnName="tariff_id" />
+                <ScalarProperty Name="contract_number" ColumnName="contract_number" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="monthly_payment" ColumnName="monthly_payment" />
+                <ScalarProperty Name="days_remaining" ColumnName="days_remaining" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="UFANETModel.Payments">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="payment_date" ColumnName="payment_date" />
+                <ScalarProperty Name="payment_method" ColumnName="payment_method" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="UFANETModel.Services">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="service_id" ColumnName="service_id" />
+                <ScalarProperty Name="service_name" ColumnName="service_name" />
+                <ScalarProperty Name="service_type" ColumnName="service_type" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="base_price" ColumnName="base_price" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tariffs">
+            <EntityTypeMapping TypeName="UFANETModel.Tariffs">
+              <MappingFragment StoreEntitySet="Tariffs">
+                <ScalarProperty Name="tariff_id" ColumnName="tariff_id" />
+                <ScalarProperty Name="service_id" ColumnName="service_id" />
+                <ScalarProperty Name="tariff_name" ColumnName="tariff_name" />
+                <ScalarProperty Name="speed_mbps" ColumnName="speed_mbps" />
+                <ScalarProperty Name="channel_count" ColumnName="channel_count" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
