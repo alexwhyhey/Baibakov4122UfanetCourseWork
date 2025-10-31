@@ -23,6 +23,13 @@ namespace Baibakov4122UfanetCourseWork
         public string last_name { get; set; }
         public string first_name { get; set; }
         public string middle_name { get; set; }
+        public string full_name
+        {
+            get
+            {
+                return $"{last_name} {first_name} {middle_name}";
+            }
+        }
         public string phone { get; set; }
         public Nullable<System.DateTime> birthday { get; set; }
         public string email { get; set; }
@@ -30,6 +37,19 @@ namespace Baibakov4122UfanetCourseWork
         public string passport_data { get; set; }
         public System.DateTime registration_date { get; set; }
         public string photo { get; set; }
+        public string photoOptimized
+        {
+            get
+            {
+                if (this.photo != null)
+                {
+                    return "Resources/" + this.photo;
+                } else
+                {
+                    return "Resources/user_default.png";
+                }
+            }
+        }
     
         public virtual ICollection<Contracts> Contracts { get; set; }
     }

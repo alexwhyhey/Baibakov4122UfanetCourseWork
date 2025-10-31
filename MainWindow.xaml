@@ -18,6 +18,11 @@
 
         <Frame Name="MainFrame" Grid.Row="1" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"/>
 
-        <Button Name="back_btn" Content="Назад" HorizontalAlignment="Right" Click="back_btn_Click" Style="{StaticResource RoundedButtonStyle}"/>
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Width="40" Height="40" Name="PageChangeButton" Click="PageChangeButton_Click" Background="Transparent" BorderThickness="0" Padding="0" Margin="20,0,20,0"> 
+                <Image Source="Resources/tariffs_page.png" Name="PageRouteImage" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Button>
+            <Button Name="back_btn" Content="Назад" HorizontalAlignment="Right" Click="back_btn_Click" Style="{StaticResource RoundedButtonStyle}"/>
+        </StackPanel>
     </Grid>
 </Window>

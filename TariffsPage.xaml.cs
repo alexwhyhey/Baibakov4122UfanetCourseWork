@@ -16,17 +16,13 @@ using System.Windows.Shapes;
 namespace Baibakov4122UfanetCourseWork
 {
     /// <summary>
-    /// Логика взаимодействия для ClientsPage.xaml
+    /// Логика взаимодействия для TariffsPage.xaml
     /// </summary>
-    public partial class ClientsPage : Page
+    public partial class TariffsPage : Page
     {
-        public ClientsPage()
+        public TariffsPage()
         {
             InitializeComponent();
-
-            var clients = UFANETEntities.GetContext().Clients.ToList();
-
-            ClientsListView.ItemsSource = clients;
         }
     }
 }

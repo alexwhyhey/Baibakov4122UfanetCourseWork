@@ -73,6 +73,16 @@ namespace Baibakov4122UfanetCourseWork.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap clients_page {
+            get {
+                object obj = ResourceManager.GetObject("clients_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fedorova_6 {
             get {
                 object obj = ResourceManager.GetObject("fedorova_6", resourceCulture);
@@ -206,6 +216,26 @@ namespace Baibakov4122UfanetCourseWork.Properties {
         internal static System.Drawing.Bitmap sokolova_14 {
             get {
                 object obj = ResourceManager.GetObject("sokolova_14", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tariffs_page {
+            get {
+                object obj = ResourceManager.GetObject("tariffs_page", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_default {
+            get {
+                object obj = ResourceManager.GetObject("user_default", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -15,6 +15,18 @@ namespace Baibakov4122UfanetCourseWork
     
     public partial class UFANETEntities : DbContext
     {
+        private static UFANETEntities _context;
+
+        public static UFANETEntities GetContext()
+        {
+            if (_context == null)
+            {
+                _context = new UFANETEntities();
+            }
+
+            return _context;
+        }
+
         public UFANETEntities()
             : base("name=UFANETEntities")
         {
