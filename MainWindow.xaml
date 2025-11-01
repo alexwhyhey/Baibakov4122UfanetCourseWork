@@ -24,5 +24,12 @@
             </Button>
             <Button Name="back_btn" Content="Назад" HorizontalAlignment="Right" Click="back_btn_Click" Style="{StaticResource RoundedButtonStyle}"/>
         </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20,0,20,0">
+            <TextBlock Name="CountTB" Text="Записей: " Margin="10,0,10,0"/>
+            <TextBlock Name="CurrentCountTB" Text="0"/>
+            <TextBlock Name="OfTB" Text=" из " Margin="5,0,5,0"/>
+            <TextBlock Name="AllCountTB" Text="0"/>
+        </StackPanel>
     </Grid>
 </Window>

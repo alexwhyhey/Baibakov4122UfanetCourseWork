@@ -11,7 +11,8 @@ namespace Baibakov4122UfanetCourseWork
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class Clients
     {
         public Clients()
@@ -52,5 +53,23 @@ namespace Baibakov4122UfanetCourseWork
         }
     
         public virtual ICollection<Contracts> Contracts { get; set; }
+
+        public string contracts
+        {
+            get
+            {
+                string cons = "";
+
+                if (this.Contracts.ToList().Count != 0)
+                {
+                    foreach (var contract in this.Contracts.ToList())
+                    {
+                        cons = cons + contract.contract_number + " ";
+                    }
+                }
+
+                return cons;
+            }
+        }
     }
 }

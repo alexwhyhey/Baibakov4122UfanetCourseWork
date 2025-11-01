@@ -22,16 +22,40 @@ namespace Baibakov4122UfanetCourseWork
     public partial class MainWindow : Window
     {
         private static bool is_clients_image = false;
-        ClientsPage ClientsPageTo = new ClientsPage();
-        TariffsPage TariffsPageTo = new TariffsPage();
+        private static ClientsPage ClientsPageTo;
+        private static TariffsPage TariffsPageTo;
+
+        private static ClientsPage CPage(TextBlock CCTB, TextBlock ACTB)
+        {
+            if (ClientsPageTo == null)
+            {
+                ClientsPageTo = new ClientsPage(CCTB, ACTB);
+            }
+
+            return ClientsPageTo;
+            
+        }
+
+        private static TariffsPage TPage()
+        {
+            if (TariffsPageTo == null)
+            {
+                TariffsPageTo = new TariffsPage();
+            }
+
+            return TariffsPageTo;
+
+        }
 
         public MainWindow()
         {
             InitializeComponent();
 
-            MainFrame.Navigate(ClientsPageTo);
+            MainFrame.Navigate(CPage(CurrentCountTB, AllCountTB));
             Manager.MainFrame = MainFrame;
         }
+
+        
 
         private void back_btn_Click(object sender, RoutedEventArgs e)
         {
@@ -57,14 +81,14 @@ namespace Baibakov4122UfanetCourseWork
         {
             if (is_clients_image)
             {
-                MainFrame.Navigate(ClientsPageTo);
+                MainFrame.Navigate(CPage(CurrentCountTB, AllCountTB));
                 Manager.MainFrame = MainFrame;
 
                 PageRouteImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tariffs_page.png"));
                 is_clients_image = false;
             } else
             {
-                MainFrame.Navigate(TariffsPageTo);
+                MainFrame.Navigate(TPage());
                 Manager.MainFrame = MainFrame;
 
                 PageRouteImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/clients_page.png"));
