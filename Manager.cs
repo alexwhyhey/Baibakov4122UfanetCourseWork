@@ -10,5 +10,6 @@ namespace Baibakov4122UfanetCourseWork
     internal class Manager
     {
         public static Frame MainFrame { get; set; }
+        public static TextBlock MainTextBlock {  get; set; }
     }
 }

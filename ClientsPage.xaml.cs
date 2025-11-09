@@ -42,7 +42,8 @@ namespace Baibakov4122UfanetCourseWork
 
         private void ClientEditButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Manager.MainFrame.Navigate(new ClientsAddEditPage((sender as Button).DataContext as Clients));
+            Manager.MainTextBlock.Text = "Редактирование клиента";
         }
 
         private void ClientAddContractButton_Click(object sender, RoutedEventArgs e)
@@ -59,7 +60,8 @@ namespace Baibakov4122UfanetCourseWork
             if (client_contracts.contracts == "")
             {
                 answer = "     Отсутствуют     ";
-            } else
+            }
+            else
             {
                 foreach (var contract in client_contracts.contracts.Split(' '))
                 {

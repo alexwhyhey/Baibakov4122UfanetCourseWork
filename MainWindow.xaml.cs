@@ -53,6 +53,7 @@ namespace Baibakov4122UfanetCourseWork
 
             MainFrame.Navigate(CPage(CurrentCountTB, AllCountTB));
             Manager.MainFrame = MainFrame;
+            Manager.MainTextBlock = MainPageTextBlock;
         }
 
         
@@ -83,6 +84,7 @@ namespace Baibakov4122UfanetCourseWork
             {
                 MainFrame.Navigate(CPage(CurrentCountTB, AllCountTB));
                 Manager.MainFrame = MainFrame;
+                Manager.MainTextBlock.Text = "Список клиентов";
 
                 PageRouteImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tariffs_page.png"));
                 is_clients_image = false;
@@ -90,6 +92,7 @@ namespace Baibakov4122UfanetCourseWork
             {
                 MainFrame.Navigate(TPage());
                 Manager.MainFrame = MainFrame;
+                Manager.MainTextBlock.Text = "Список тарифов";
 
                 PageRouteImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/clients_page.png"));
                 is_clients_image = true;
