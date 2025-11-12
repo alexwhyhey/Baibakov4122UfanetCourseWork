@@ -78,6 +78,11 @@ namespace Baibakov4122UfanetCourseWork
                 );
         }
 
+        private void ClientAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new ClientsAddEditPage(null));
+        }
+
         private void SomethingHasChanged()
         {
             var currentClients = UFANETEntities.GetContext().Clients.ToList();

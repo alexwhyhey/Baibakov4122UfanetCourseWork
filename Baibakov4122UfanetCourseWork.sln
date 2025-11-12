@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baibakov4122UfanetCourseWork", "Baibakov4122UfanetCourseWork.csproj", "{0837AA20-A2BC-4089-95A5-1ECD2B3B29BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baibakov4122UfanetCourseWorkTests", "..\Baibakov4122UfanetCourseWorkTests\Baibakov4122UfanetCourseWorkTests.csproj", "{18663941-6C4D-487C-9D85-0F91E564B446}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0837AA20-A2BC-4089-95A5-1ECD2B3B29BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0837AA20-A2BC-4089-95A5-1ECD2B3B29BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0837AA20-A2BC-4089-95A5-1ECD2B3B29BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18663941-6C4D-487C-9D85-0F91E564B446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18663941-6C4D-487C-9D85-0F91E564B446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18663941-6C4D-487C-9D85-0F91E564B446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18663941-6C4D-487C-9D85-0F91E564B446}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

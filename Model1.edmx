@@ -20,6 +20,7 @@
           <Property Name="passport_data" Type="varchar" MaxLength="100" />
           <Property Name="registration_date" Type="date" Nullable="false" />
           <Property Name="photo" Type="varchar" MaxLength="255" />
+          <Property Name="gender" Type="nchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="Contracts">
           <Key>
@@ -159,6 +160,7 @@
           <Property Name="passport_data" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="registration_date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="photo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Contracts" Relationship="Self.fk_client" FromRole="Clients" ToRole="Contracts" />
         </EntityType>
         <EntityType Name="Contracts">
@@ -306,6 +308,7 @@
                 <ScalarProperty Name="passport_data" ColumnName="passport_data" />
                 <ScalarProperty Name="registration_date" ColumnName="registration_date" />
                 <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

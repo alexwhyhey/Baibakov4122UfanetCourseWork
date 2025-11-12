@@ -15,9 +15,16 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
-            <TextBlock Text="Поиск" FontSize="16" Margin="20,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBox Name="SearchTB" FontSize="16" TextChanged="SearchTB_TextChanged" Height="24" Width="150" Margin="10,0,20,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock/>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
+                <TextBlock Text="Поиск" FontSize="16" Margin="20,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox Name="SearchTB" FontSize="16" TextChanged="SearchTB_TextChanged" Height="24" Width="150" Margin="10,0,20,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <Button Style="{StaticResource RoundedButtonStyle}" Name="ClientAddButton" Content="Добавить" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Click="ClientAddButton_Click"/>
         </StackPanel>
+
         
         <ListView Name="ClientsListView" Grid.Row="1">
             <ListView.ItemTemplate>

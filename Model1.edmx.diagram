@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6325eaae65b94d9589c976e676682883" Name="Diagram1">
-        <EntityTypeShape EntityType="UFANETModel.Clients" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+      <Diagram DiagramId="e573fe49ca4947bfa7096bebcd1df56a" Name="Diagram1">
+        <EntityTypeShape EntityType="UFANETModel.Clients" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="UFANETModel.Contracts" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="UFANETModel.Payments" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="UFANETModel.Services" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />

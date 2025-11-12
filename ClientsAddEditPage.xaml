@@ -28,16 +28,16 @@
                     <TextBox Name="ClientLastNameTextBox" Margin="5" FontSize="14" Width="200"/>
                     <TextBox Name="ClientFirstNameTextBox" Margin="5" FontSize="14" Width="200"/>
                     <TextBox Name="ClientMiddleNameTextBox" Margin="5" FontSize="14" Width="200"/>
-                    <TextBox Name="ClientBirthDateTextBox" Margin="5" FontSize="14" Width="200" IsEnabled="False"/>
-                    <TextBox Name="ClientSignUpDateTextBox" Margin="5" FontSize="14" Width="200" IsEnabled="False"/>
                     <TextBox Name="ClientPassportTextBox" Margin="5" FontSize="14" Width="200"/>
+                    <DatePicker Name="ClientBirthDatePicker" Height="20" Margin="3" FontSize="12" Width="200" IsEnabled="False"/>
+                    <DatePicker Name="ClientSignUpDatePicker" Height="20" Margin="3" FontSize="12" Width="200" IsEnabled="False"/>
                     <TextBox Name="ClientAddressTextBox" Margin="5" FontSize="14" Width="200"/>
                     <TextBox Name="ClientPhoneTextBox" Margin="5" FontSize="14" Width="200"/>
                     <TextBox Name="ClientEmailTextBox" Margin="5" FontSize="14" Width="200"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0">
                     <Image Name="ClientPhotoImage" Margin="5" Width="200"/>
-                    <Button Style="{StaticResource RoundedButtonStyle}" Content="Изменить" Height="30" FontSize="12" Width="85"/>
+                    <Button Style="{StaticResource RoundedButtonStyle}" Name="PhotoChangeButton" Click="PhotoChangeButton_Click" Content="Изменить" Height="30" FontSize="12" Width="85"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,50,0,50" VerticalAlignment="Center" HorizontalAlignment="Center">

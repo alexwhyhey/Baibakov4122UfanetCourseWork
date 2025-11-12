@@ -24,17 +24,26 @@ namespace Baibakov4122UfanetCourseWork
         {
             InitializeComponent();
 
-            ClientIDTextBox.Text = client.client_id.ToString();
-            ClientLastNameTextBox.Text = client.last_name;
-            ClientFirstNameTextBox.Text = client.first_name;
-            ClientMiddleNameTextBox.Text = client.middle_name;
-            ClientPassportTextBox.Text = client.passport_data;
-            ClientAddressTextBox.Text = client.address;
-            ClientPhoneTextBox.Text = client.phone;
-            ClientEmailTextBox.Text = client.email;
-            ClientSignUpDateTextBox.Text = client.registration_date.ToShortDateString();
-            ClientBirthDateTextBox.Text = client.birthday == null ? "Отсутствует" : ((System.DateTime)client.birthday).ToShortDateString();
-            ClientPhotoImage.Source = new BitmapImage(new Uri("pack://application:,,,/" + client.photoOptimized));
+            if (client != null)
+            {
+                ClientIDTextBox.Text = client.client_id.ToString();
+                ClientLastNameTextBox.Text = client.last_name;
+                ClientFirstNameTextBox.Text = client.first_name;
+                ClientMiddleNameTextBox.Text = client.middle_name;
+                ClientPassportTextBox.Text = client.passport_data;
+                ClientAddressTextBox.Text = client.address;
+                ClientPhoneTextBox.Text = client.phone;
+                ClientEmailTextBox.Text = client.email;
+                ClientSignUpDatePicker.Text = client.registration_date.ToShortDateString();
+                ClientBirthDatePicker.Text = client.birthday == null ? "01.01.1900" : ((System.DateTime)client.birthday).ToShortDateString();
+                ClientPhotoImage.Source = new BitmapImage(new Uri("pack://application:,,,/" + client.photoOptimized));
+            } else
+            {
+                ClientPhotoImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/user_default.png"));
+                ClientBirthDatePicker.IsEnabled = true;
+                ClientSignUpDatePicker.SelectedDate = DateTime.Today;
+                Manager.MainTextBlock.Text = "Добавление клиента";
+            }
         }
 
         private void EditCancelButton_Click(object sender, RoutedEventArgs e)
@@ -44,6 +53,23 @@ namespace Baibakov4122UfanetCourseWork
         }
 
         private void EditSaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            Validator validator = new Validator();
+
+            if (validator.FirstName(ClientFirstNameTextBox.Text) && validator.MiddleName(ClientMiddleNameTextBox.Text) &&
+                validator.LastName(ClientLastNameTextBox.Text) && validator.Passport(ClientPassportTextBox.Text) &&
+                validator.Address(ClientAddressTextBox.Text) && validator.Phone(ClientPhoneTextBox.Text) &&
+                validator.Email(ClientEmailTextBox.Text) && validator.IsAdult(DateTime.Parse(ClientBirthDatePicker.Text), DateTime.Parse(ClientSignUpDatePicker.Text))
+                )
+            {
+                MessageBox.Show("Everything is ok");
+            } else
+            {
+                MessageBox.Show("Something is wrong");
+            }
+        }
+
+        private void PhotoChangeButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
