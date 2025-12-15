@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Baibakov4122UfanetCourseWork"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClientsPage">
+      Title="ClientsPage" FontFamily="Century Gothic">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,18 +14,41 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
-            <TextBlock/>
-
+        <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">
-                <TextBlock Text="Поиск" FontSize="16" Margin="20,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBox Name="SearchTB" FontSize="16" TextChanged="SearchTB_TextChanged" Height="24" Width="150" Margin="10,0,20,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="Поиск" FontSize="18" Height="30" Margin="20,0,10,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox Name="SearchTB" FontSize="18" TextChanged="SearchTB_TextChanged" Height="30" Width="250" Margin="10,0,20,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
 
-            <Button Style="{StaticResource RoundedButtonStyle}" Name="ClientAddButton" Content="Добавить" Height="35" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100,0,0,0" Click="ClientAddButton_Click"/>
-        </StackPanel>
+            <ComboBox Name="SortComboBox" Width="250" Margin="10,0,20,0" VerticalAlignment="Center" FontSize="18"
+                      SelectionChanged="SortComboBox_SelectionChanged">
+                <ComboBoxItem Content="Без сортировки" IsSelected="True"/>
+                <ComboBoxItem Content="По ФИО (А-Я)"/>
+                <ComboBoxItem Content="По ФИО (Я-А)"/>
+                <ComboBoxItem Content="По дате регистрации (новые)"/>
+                <ComboBoxItem Content="По дате регистрации (старые)"/>
+            </ComboBox>
 
-        
+            <StackPanel Orientation="Vertical"   >
+                <RadioButton Name="AllClientsRadioButton" Content="Все клиенты"  FontSize="18" GroupName="FilterGroup" 
+                 IsChecked="True" Margin="10,0,20,0" VerticalAlignment="Center"
+                 Checked="FilterRadioButton_Changed"/>
+                <RadioButton Name="WithContractsRadioButton" Content="Только с договорами"  FontSize="18" GroupName="FilterGroup" 
+                 Margin="10,0,20,0" VerticalAlignment="Center"
+                 Checked="FilterRadioButton_Changed"/>
+                <RadioButton Name="WithoutContractsRadioButton" Content="Только без договоров"  FontSize="18" GroupName="FilterGroup" 
+                 Margin="10,0,20,0" VerticalAlignment="Center"
+                 Checked="FilterRadioButton_Changed"/>
+
+            </StackPanel>
+
+
+        </WrapPanel>
+        <Button Style="{StaticResource RoundedButtonStyle}" Name="ClientAddButton" 
+                    Content="Добавить" Height="40" HorizontalAlignment="Right" 
+                    VerticalAlignment="Bottom"  Width="160"  FontSize="20" Margin="5" Click="ClientAddButton_Click"/>
+        <!-- Закрывающий тег для первого StackPanel -->
+
         <ListView Name="ClientsListView" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -42,10 +65,10 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Source="{Binding photoOptimized}" Height="200" Margin="0" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Source="{Binding photoOptimized}" 
+                               Height="200" Margin="0" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                         <StackPanel Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock Style="{StaticResource DefaultTextBlockStyle}" Text="ID" FontWeight="Bold" Grid.Column="1"/>
                             <TextBlock Style="{StaticResource DefaultTextBlockStyle}" Text="ФИО" FontWeight="Bold" Grid.Column="1"/>
                             <TextBlock Style="{StaticResource DefaultTextBlockStyle}" Text="Паспорт серия/номер" FontWeight="Bold" Grid.Column="1"/>
                             <TextBlock Style="{StaticResource DefaultTextBlockStyle}" Text="Дата рождения | регистрации" FontWeight="Bold" Grid.Column="1"/>
@@ -55,7 +78,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Row="0" Grid.RowSpan="3"  Grid.Column="2" Margin="15" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <TextBlock Style="{StaticResource DefaultTextBlockStyle}" Text="{Binding client_id}" Grid.Column="2"/>
+
                             <TextBlock Style="{StaticResource DefaultTextBlockStyle}" Text="{Binding full_name}" Grid.Column="2"/>
                             <TextBlock Style="{StaticResource DefaultTextBlockStyle}" Text="{Binding passport_data}" Grid.Column="2"/>
                             <TextBlock Style="{StaticResource DefaultTextBlockStyle}" Text="{Binding birth_signup_date}" Grid.Column="2"/>
@@ -64,14 +87,20 @@
                             <TextBlock Style="{StaticResource DefaultTextBlockStyle}" Text="{Binding email}" Grid.Column="2"/>
                         </StackPanel>
 
-                        <Button Style="{StaticResource RoundedButtonStyle}" Name="ClientEditButton" Content="Редактировать" Width="auto" Grid.Column="3" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="ClientEditButton_Click"/>
-                        <Button Style="{StaticResource RoundedButtonStyle}" Name="ClientAddContractButton" Content="Добавить договор" Width="auto" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Click="ClientAddContractButton_Click"/>
-                        <Button Style="{StaticResource RoundedButtonStyle}" Name="ClientContractButton" Content="Активные договоры" Width="auto" Grid.Column="3" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left" Click="ClientContractButton_Click"/>
+                        <StackPanel Orientation="Vertical" Grid.Column="3" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Left">
+
+                        <Button Style="{StaticResource RoundedButtonStyle}" Name="ClientEditButton" Content="Редактировать" 
+                                Width="auto"   Click="ClientEditButton_Click"/>
+
+                        <Button Style="{StaticResource RoundedButtonStyle}" Name="ClientContractButton" Content="Активные договоры" 
+                                Width="auto"  Click="ClientContractButton_Click"/>
+
+                        </StackPanel>
 
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        
+
     </Grid>
 </Page>

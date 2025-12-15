@@ -23,7 +23,6 @@ namespace Baibakov4122UfanetCourseWork
     {
         private static bool is_clients_image = false;
         private static ClientsPage ClientsPageTo;
-        private static TariffsPage TariffsPageTo;
 
         private static ClientsPage CPage(TextBlock CCTB, TextBlock ACTB)
         {
@@ -33,18 +32,6 @@ namespace Baibakov4122UfanetCourseWork
             }
 
             return ClientsPageTo;
-            
-        }
-
-        private static TariffsPage TPage()
-        {
-            if (TariffsPageTo == null)
-            {
-                TariffsPageTo = new TariffsPage();
-            }
-
-            return TariffsPageTo;
-
         }
 
         public MainWindow()
@@ -54,28 +41,45 @@ namespace Baibakov4122UfanetCourseWork
             MainFrame.Navigate(CPage(CurrentCountTB, AllCountTB));
             Manager.MainFrame = MainFrame;
             Manager.MainTextBlock = MainPageTextBlock;
+            MainFrame.Navigated += MainFrame_Navigated;
         }
-
-        
 
         private void back_btn_Click(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.GoBack();
+            if (MainFrame.CanGoBack)
+                MainFrame.GoBack();
+        }
+
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            // Показываем кнопку "Назад", если есть куда возвращаться
+            back_btn.Visibility = MainFrame.CanGoBack ? Visibility.Visible : Visibility.Hidden;
+
+            // Обновляем заголовок
+            if (e.Content is Page page)
+            {
+                // Устанавливаем заголовок в зависимости от типа страницы
+                if (page is ClientsPage)
+                {
+                    MainPageTextBlock.Text = "Список клиентов";
+                }
+                else if (page is ClientsAddEditPage)
+                {
+                    // Заголовок будет установлен в самой странице ClientsAddEditPage
+                    // через Manager.MainTextBlock.Text
+                    // Поэтому здесь ничего не делаем
+                }
+                // Добавьте другие страницы по мере необходимости
+                else if (page.Title != null)
+                {
+                    MainPageTextBlock.Text = page.Title;
+                }
+            }
         }
 
         private void MainFrame_ContentRendered(object sender, EventArgs e)
         {
-            back_btn.Visibility = Visibility.Hidden;
-
-           // TODO
-           /* if (MainFrame.CanGoBack)
-            {
-                back_btn.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                back_btn.Visibility = Visibility.Hidden;
-            }*/
+            // Устаревший метод, можно удалить или оставить пустым
         }
 
         private void PageChangeButton_Click(object sender, RoutedEventArgs e)
@@ -86,17 +90,9 @@ namespace Baibakov4122UfanetCourseWork
                 Manager.MainFrame = MainFrame;
                 Manager.MainTextBlock.Text = "Список клиентов";
 
-                PageRouteImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/tariffs_page.png"));
                 is_clients_image = false;
-            } else
-            {
-                MainFrame.Navigate(TPage());
-                Manager.MainFrame = MainFrame;
-                Manager.MainTextBlock.Text = "Список тарифов";
-
-                PageRouteImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/clients_page.png"));
-                is_clients_image = true;
             }
+       
         }
     }
 }

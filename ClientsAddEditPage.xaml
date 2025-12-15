@@ -6,13 +6,13 @@
       xmlns:local="clr-namespace:Baibakov4122UfanetCourseWork"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClientsAddEditPage">
+      Title="ClientsAddEditPage" FontFamily="Century Gothic">
 
     <Grid>
         <StackPanel Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal" Margin="15" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0">
-                    <TextBlock Text="ID" Margin="5" FontWeight="Bold" FontSize="14"/>
+                   
                     <TextBlock Text="Фамилия" Margin="5" FontWeight="Bold" FontSize="14"/>
                     <TextBlock Text="Имя" Margin="5" FontWeight="Bold" FontSize="14"/>
                     <TextBlock Text="Отчество" Margin="5" FontWeight="Bold" FontSize="14"/>
@@ -24,25 +24,25 @@
                     <TextBlock Text="Почта" Margin="5" FontWeight="Bold" FontSize="14"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0">
-                    <TextBox Name="ClientIDTextBox" Margin="5" FontSize="14" Width="200" IsEnabled="False"/>
+                   
                     <TextBox Name="ClientLastNameTextBox" Margin="5" FontSize="14" Width="200"/>
                     <TextBox Name="ClientFirstNameTextBox" Margin="5" FontSize="14" Width="200"/>
                     <TextBox Name="ClientMiddleNameTextBox" Margin="5" FontSize="14" Width="200"/>
                     <TextBox Name="ClientPassportTextBox" Margin="5" FontSize="14" Width="200"/>
-                    <DatePicker Name="ClientBirthDatePicker" Height="20" Margin="3" FontSize="12" Width="200" IsEnabled="False"/>
-                    <DatePicker Name="ClientSignUpDatePicker" Height="20" Margin="3" FontSize="12" Width="200" IsEnabled="False"/>
+                    <DatePicker Name="ClientBirthDatePicker" Height="30" Margin="5" FontSize="14" Width="200"/>
+                    <DatePicker Name="ClientSignUpDatePicker" Height="30" Margin="5" FontSize="14" Width="200" IsEnabled="False"/>
                     <TextBox Name="ClientAddressTextBox" Margin="5" FontSize="14" Width="200"/>
                     <TextBox Name="ClientPhoneTextBox" Margin="5" FontSize="14" Width="200"/>
                     <TextBox Name="ClientEmailTextBox" Margin="5" FontSize="14" Width="200"/>
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,10,0">
                     <Image Name="ClientPhotoImage" Margin="5" Width="200"/>
-                    <Button Style="{StaticResource RoundedButtonStyle}" Name="PhotoChangeButton" Click="PhotoChangeButton_Click" Content="Изменить" Height="30" FontSize="12" Width="85"/>
+                    <Button Style="{StaticResource RoundedButtonStyle}" Name="PhotoChangeButton" Click="PhotoChangeButton_Click" Content="Изменить" Height="30" FontSize="12" Width="100"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,50,0,50" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button Name="EditCancelButton" Click="EditCancelButton_Click" Style="{StaticResource RoundedButtonStyle}" Width="125" Content="Отменить" Margin="20,0,20,0"/>
-                <Button Name="EditSaveButton" Click="EditSaveButton_Click" Style="{StaticResource RoundedButtonStyle}" Width="125" Content="Сохранить" Margin="20,0,20,0"/>
+                <Button Name="DeleteBtn" Click="DeleteBtn_Click" Content="Удалить" Style="{StaticResource RoundedButtonStyle}" Width="155" Margin="20,0,20,0"></Button>
+                <Button Name="EditSaveButton" Click="EditSaveButton_Click" Style="{StaticResource RoundedButtonStyle}" Width="150" Content="Сохранить" Margin="20,0,20,0"/>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -19,17 +19,15 @@
         <Frame Name="MainFrame" Grid.Row="1" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"/>
 
         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Width="40" Height="40" Name="PageChangeButton" Click="PageChangeButton_Click" Background="Transparent" BorderThickness="0" Padding="0" Margin="20,0,20,0"> 
-                <Image Source="Resources/tariffs_page.png" Name="PageRouteImage" Height="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            </Button>
+
             <Button Name="back_btn" Content="Назад" HorizontalAlignment="Right" Click="back_btn_Click" Style="{StaticResource RoundedButtonStyle}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20,0,20,0">
-            <TextBlock Name="CountTB" Text="Записей: " Margin="10,0,10,0"/>
-            <TextBlock Name="CurrentCountTB" Text="0"/>
-            <TextBlock Name="OfTB" Text=" из " Margin="5,0,5,0"/>
-            <TextBlock Name="AllCountTB" Text="0"/>
+            <TextBlock Name="CountTB" Text="Записей: " Margin="10,0,10,0"  FontSize="16"/>
+            <TextBlock Name="CurrentCountTB" Text="0"  FontSize="16"/>
+            <TextBlock Name="OfTB" Text=" из " Margin="5,0,5,0"  FontSize="16"/>
+            <TextBlock Name="AllCountTB" Text="0"  FontSize="16"/>
         </StackPanel>
     </Grid>
 </Window>
